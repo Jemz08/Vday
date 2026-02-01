@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Valentine’s 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      min-height: 100vh;
+      color: #2b2b2b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      padding: 24px;
+      max-width: 900px;
+      width: 95%;
+      text-align: center;
+    }
+    h1 { margin-top: 0; }
+    .hidden { display: none; }
+
+    /* Game */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 360px;
+      margin: 16px auto;
+    }
+    .tile {
+      background: #ff6f91;
+      border-radius: 12px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      cursor: pointer;
+      color: transparent;
+      user-select: none;
+    }
+    .tile.revealed { color: #fff; background: #ff3b6f; }
+    .tile.matched { background: #9bffb0; color: #0f5132; cursor: default; }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+    .msg {
+      background: #fff3f6;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 12px;
+    }
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      background: #ff3b6f;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    footer { opacity: .7; margin-top: 8px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <section id="intro">
+      <h1>Hey Love 💘</h1>
+      <p>Before you see your surprise, beat this tiny game 😜</p>
+      <button onclick="startGame()">Start Game</button>
+    </section>
+
+    <section id="game" class="hidden">
+      <h2>Match the Hearts 💖</h2>
+      <p>Find all pairs to unlock the surprise.</p>
+      <div class="grid" id="grid"></div>
+      <p id="status"></p>
+    </section>
+
+    <section id="surprise" class="hidden">
+      <h2>Happy Valentine’s, <span id="herName">My Love</span> 💞</h2>
+      <div class="msg">
+        <p>
+          I just want you to know how much you mean to me.  
+          Thank you for all the laughs, the late nights, and the love.  
+          Here’s a little piece of us ❤️
+        </p>
+        <p>— <strong id="yourName">Your Name</strong></p>
+      </div>
+
+      <div class="gallery">
+        <!-- Replace these with your own photos -->
+        <img src="https://picsum.photos/300/300?1" />
+        <img src="https://picsum.photos/300/300?2" />
+        <img src="https://picsum.photos/300/300?3" />
+        <img src="https://picsum.photos/300/300?4" />
+        <img src="https://picsum.photos/300/300?5" />
+        <img src="https://picsum.photos/300/300?6" />
+      </div>
+
+      <footer>Made with ❤️</footer>
+    </section>
+  </div>
+
+  <script>
+    const icons = ['💖','💘','🌹','💝','💖','💘','🌹','💝'];
+    let first = null, lock = false, matched = 0;
+
+    function startGame() {
+      document.getElementById('intro').classList.add('hidden');
+      document.getElementById('game').classList.remove('hidden');
+      const grid = document.getElementById('grid');
+      grid.innerHTML = '';
+      matched = 0; first = null; lock = false;
+
+      const shuffled = icons.sort(() => 0.5 - Math.random());
+      shuffled.forEach(icon => {
+        const d = document.createElement('div');
+        d.className = 'tile';
+        d.textContent = icon;
+        d.onclick = () => reveal(d, icon);
+        grid.appendChild(d);
+      });
+      document.getElementById('status').textContent = '';
+    }
+
+    function reveal(tile, icon) {
+      if (lock || tile.classList.contains('matched') || tile === first) return;
+      tile.classList.add('revealed');
+
+      if (!first) {
+        first = tile;
+      } else {
+        if (first.textContent === icon) {
+          first.classList.add('matched');
+          tile.classList.add('matched');
+          matched += 2;
+          first = null;
+          if (matched === icons.length) unlock();
+        } else {
+          lock = true;
+          setTimeout(() => {
+            first.classList.remove('revealed');
+            tile.classList.remove('revealed');
+            first = null;
+            lock = false;
+          }, 800);
+        }
+      }
+    }
+
+    function unlock() {
+      document.getElementById('game').classList.add('hidden');
+      document.getElementById('surprise').classList.remove('hidden');
+      // Customize names here:
+      document.getElementById('herName').textContent = 'Her Name';
+      document.getElementById('yourName').textContent = 'Your Name';
+    }
+  </script>
+</body>
+</html>
