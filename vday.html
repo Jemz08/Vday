@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Valentine’s 💖</title>
+  <title>For Lab 💖</title>
   <style>
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       min-height: 100vh;
-      color: #2b2b2b;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: #2b2b2b;
     }
     .card {
       background: rgba(255,255,255,0.95);
@@ -24,33 +24,41 @@
       width: 95%;
       text-align: center;
     }
-    h1 { margin-top: 0; }
+    h1, h2 { margin-top: 0; }
     .hidden { display: none; }
 
-    /* Game */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      max-width: 360px;
-      margin: 16px auto;
-    }
-    .tile {
-      background: #ff6f91;
+    .q {
+      text-align: left;
+      max-width: 520px;
+      margin: 12px auto;
+      background: #fff3f6;
       border-radius: 12px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      cursor: pointer;
-      color: transparent;
-      user-select: none;
+      padding: 12px;
     }
-    .tile.revealed { color: #fff; background: #ff3b6f; }
-    .tile.matched { background: #9bffb0; color: #0f5132; cursor: default; }
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      margin-top: 6px;
+      font-size: 16px;
+    }
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      background: #ff3b6f;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .err {
+      color: #c62828;
+      font-weight: 600;
+      margin-top: 8px;
+    }
 
-    /* Gallery */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -70,112 +78,118 @@
       padding: 16px;
       margin-top: 12px;
     }
-    button {
-      border: none;
-      border-radius: 999px;
-      padding: 10px 16px;
-      background: #ff3b6f;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 10px;
-    }
     footer { opacity: .7; margin-top: 8px; font-size: 12px; }
   </style>
 </head>
 <body>
   <div class="card">
     <section id="intro">
-      <h1>Hey Love 💘</h1>
-      <p>Before you see your surprise, beat this tiny game 😜</p>
-      <button onclick="startGame()">Start Game</button>
+      <h1>Hey Lab 💘</h1>
+      <p>Before you see your surprise, answer these 3 little questions 😘</p>
+      <button onclick="startQuiz()">Start</button>
     </section>
 
-    <section id="game" class="hidden">
-      <h2>Match the Hearts 💖</h2>
-      <p>Find all pairs to unlock the surprise.</p>
-      <div class="grid" id="grid"></div>
-      <p id="status"></p>
+    <section id="quiz" class="hidden">
+      <h2>How Well Do You Know Us? 💖</h2>
+
+      <div class="q">
+        <label><strong>1) When is our anniversary?</strong></label>
+        <input id="q1" placeholder="Oct. 26 2022 / 10-26-2022 / etc." />
+      </div>
+
+      <div class="q">
+        <label><strong>2) When is my birthday?</strong></label>
+        <input id="q2" placeholder="April 25 / 4/25 / etc." />
+      </div>
+
+      <div class="q">
+        <label><strong>3) Will you be my Valentine? 😳</strong></label>
+        <input id="q3" placeholder="Type YES 😉" />
+      </div>
+
+      <button onclick="checkAnswers()">Unlock Surprise 💝</button>
+      <div id="error" class="err"></div>
     </section>
 
     <section id="surprise" class="hidden">
-      <h2>Happy Valentine’s, <span id="herName">My Love</span> 💞</h2>
+      <h2>Happy Valentine’s, Lab 💞</h2>
+
       <div class="msg">
         <p>
-          I just want you to know how much you mean to me.  
-          Thank you for all the laughs, the late nights, and the love.  
-          Here’s a little piece of us ❤️
+          Hi Lab,  
+          Happy Valentine’s Day ❤️  
+          Thank you for being my safe place, my best friend, and my favorite person.  
+          Every moment with you means the world to me.  
+          I promise to love you on your best days and your worst days.  
         </p>
-        <p>— <strong id="yourName">Your Name</strong></p>
+        <p>
+          I’m so excited for more memories with you — more laughs, more dates, more us.  
+        </p>
+        <p>— <strong>Aaron</strong></p>
       </div>
 
       <div class="gallery">
-        <!-- Replace these with your own photos -->
-        <img src="https://picsum.photos/300/300?1" />
-        <img src="https://picsum.photos/300/300?2" />
-        <img src="https://picsum.photos/300/300?3" />
-        <img src="https://picsum.photos/300/300?4" />
-        <img src="https://picsum.photos/300/300?5" />
-        <img src="https://picsum.photos/300/300?6" />
+        <!-- Replace these with your photos -->
+        <img src="pic1.jpg" />
+        <img src="pic2.jpg" />
+        <img src="pic3.jpg" />
+        <img src="pic4.jpg" />
+        <!-- Optional 5th photo -->
+        <!-- <img src="pic5.jpg" /> -->
       </div>
 
-      <footer>Made with ❤️</footer>
+      <footer>Made with ❤️ just for you</footer>
     </section>
   </div>
 
   <script>
-    const icons = ['💖','💘','🌹','💝','💖','💘','🌹','💝'];
-    let first = null, lock = false, matched = 0;
-
-    function startGame() {
+    function startQuiz() {
       document.getElementById('intro').classList.add('hidden');
-      document.getElementById('game').classList.remove('hidden');
-      const grid = document.getElementById('grid');
-      grid.innerHTML = '';
-      matched = 0; first = null; lock = false;
-
-      const shuffled = icons.sort(() => 0.5 - Math.random());
-      shuffled.forEach(icon => {
-        const d = document.createElement('div');
-        d.className = 'tile';
-        d.textContent = icon;
-        d.onclick = () => reveal(d, icon);
-        grid.appendChild(d);
-      });
-      document.getElementById('status').textContent = '';
+      document.getElementById('quiz').classList.remove('hidden');
     }
 
-    function reveal(tile, icon) {
-      if (lock || tile.classList.contains('matched') || tile === first) return;
-      tile.classList.add('revealed');
+    function clean(s) {
+      return s
+        .toLowerCase()
+        .replace(/\s+/g, '')
+        .replace(/[.,\-\/]/g, '');
+    }
 
-      if (!first) {
-        first = tile;
+    function hasAll(str, parts) {
+      return parts.every(p => str.includes(p));
+    }
+
+    function checkAnswers() {
+      const raw1 = clean(document.getElementById('q1').value);
+      const raw2 = clean(document.getElementById('q2').value);
+      const raw3 = document.getElementById('q3').value.toLowerCase();
+
+      // Anniversary: Oct 26 2022 (many formats)
+      const ok1 =
+        hasAll(raw1, ['10','26','2022']) ||
+        hasAll(raw1, ['oct','26','2022']) ||
+        hasAll(raw1, ['october','26','2022']);
+
+      // Birthday: April 25 (many formats)
+      const ok2 =
+        hasAll(raw2, ['4','25']) ||
+        hasAll(raw2, ['04','25']) ||
+        hasAll(raw2, ['apr','25']) ||
+        hasAll(raw2, ['april','25']) ||
+        hasAll(raw2, ['25','april']) ||
+        hasAll(raw2, ['25','apr']);
+
+      // Valentine: any yes-like answer
+      const yesWords = ['yes','yess','yeah','yep','oo','oo nga','oo nga po','of course','sure'];
+      const ok3 = yesWords.some(w => raw3.includes(w));
+
+      if (ok1 && ok2 && ok3) {
+        document.getElementById('quiz').classList.add('hidden');
+        document.getElementById('surprise').classList.remove('hidden');
       } else {
-        if (first.textContent === icon) {
-          first.classList.add('matched');
-          tile.classList.add('matched');
-          matched += 2;
-          first = null;
-          if (matched === icons.length) unlock();
-        } else {
-          lock = true;
-          setTimeout(() => {
-            first.classList.remove('revealed');
-            tile.classList.remove('revealed');
-            first = null;
-            lock = false;
-          }, 800);
-        }
+        document.getElementById('error').textContent =
+          'Almost there 😘 One of the answers is off. Try again!';
       }
-    }
-
-    function unlock() {
-      document.getElementById('game').classList.add('hidden');
-      document.getElementById('surprise').classList.remove('hidden');
-      // Customize names here:
-      document.getElementById('herName').textContent = 'Her Name';
-      document.getElementById('yourName').textContent = 'Your Name';
     }
   </script>
 </body>
