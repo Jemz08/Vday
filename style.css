@@ -67,13 +67,13 @@ button {
 ========================= */
 
 .heart-mask {
-  width: 300px;
-  height: 280px;
+  width: 420px;
+  height: 380px;
   margin: 30px auto 10px;
   animation: pulse 2.5s ease-in-out infinite;
   clip-path: path("M150 270 C20 200 0 120 60 80 C90 40 140 60 150 90 C160 60 210 40 240 80 C300 120 280 200 150 270 Z");
   overflow: hidden;
-  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.28);
   border-radius: 20px;
 }
 
@@ -99,3 +99,10 @@ button {
 }
 
 footer { opacity: 0.7; margin-top: 10px; font-size: 12px; }
+@media (max-width: 480px) {
+  .heart-mask {
+    width: 320px;
+    height: 300px;
+  }
+}
+
