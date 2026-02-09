@@ -1,108 +1,91 @@
-* { box-sizing: border-box; }
-
 body {
   margin: 0;
+  min-height: 100vh;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  color: #2b2b2b;
+  align-items: center;
 }
-
-.hidden { display: none; }
 
 .card {
   background: rgba(255,255,255,0.95);
-  border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  border-radius: 20px;
   padding: 24px;
   max-width: 900px;
   width: 95%;
   text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
 }
 
+.hidden { display: none; }
+
 .q {
-  text-align: left;
-  max-width: 520px;
-  margin: 12px auto;
   background: #fff3f6;
   border-radius: 12px;
   padding: 12px;
+  margin: 10px auto;
+  max-width: 520px;
+  text-align: left;
 }
 
 input {
   width: 100%;
-  padding: 10px 12px;
+  padding: 10px;
   border-radius: 10px;
   border: 1px solid #ddd;
   margin-top: 6px;
-  font-size: 16px;
 }
 
 button {
-  border: none;
-  border-radius: 999px;
+  margin-top: 10px;
   padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
   background: #ff3b6f;
   color: white;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 12px;
-  box-shadow: 0 6px 14px rgba(255,59,111,0.35);
 }
 
-.err { color: #c62828; font-weight: 600; margin-top: 8px; }
+.err { color: #c62828; margin-top: 8px; }
 
 .msg {
   background: #fff3f6;
-  border-radius: 12px;
   padding: 16px;
-  margin-top: 12px;
+  border-radius: 12px;
+  margin-bottom: 20px;
 }
 
-/* =========================
-   HEART MASK COLLAGE STYLE
-========================= */
-
-.heart-mask {
-  width: 420px;
-  height: 380px;
-  margin: 30px auto 10px;
-  animation: pulse 2.5s ease-in-out infinite;
-  clip-path: path("M150 270 C20 200 0 120 60 80 C90 40 140 60 150 90 C160 60 210 40 240 80 C300 120 280 200 150 270 Z");
+/* 💖 BIG HEART */
+.heart {
+  width: 320px;
+  height: 300px;
+  margin: 20px auto;
+  clip-path: path("M160 290 C-20 170 40 40 160 120 C280 40 340 170 160 290");
   overflow: hidden;
-  box-shadow: 0 14px 30px rgba(0,0,0,0.28);
-  border-radius: 20px;
+  animation: pulse 2.5s infinite ease-in-out;
+  box-shadow: 0 10px 20px rgba(255,59,111,.4);
 }
 
-.heart-grid img {
+.heart img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   background: #fff3f6;
-  padding: 6px;
+  transition: opacity 1s ease;
 }
 
-.heart-grid img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.fade {
+  animation: fade 1s;
 }
 
-/* Pulse animation */
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @keyframes pulse {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.06); }
-  100% { transform: scale(1); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
-
-footer { opacity: 0.7; margin-top: 10px; font-size: 12px; }
-@media (max-width: 480px) {
-  .heart-mask {
-    width: 320px;
-    height: 300px;
-  }
-}
-
