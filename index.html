@@ -42,30 +42,19 @@
 
       <div class="msg">
         <p>
-          Hi Lab,<br>
-          Happy Valentine’s Day ❤️<br>
+          Hi Lab,  
+          Happy Valentine’s Day ❤️  
           Thank you for being my safe place, my best friend, and my favorite person.  
           Every moment with you means the world to me.  
           I promise to love you on your best days and your worst days.  
         </p>
-        <p>
-          I’m so excited for more memories with you — more laughs, more dates, more us.  
-        </p>
         <p>— <strong>Aaron</strong></p>
       </div>
 
-      <!-- Heart-shaped collage (clipped mask) -->
-<div class="heart-mask">
-  <div class="heart-grid">
-    <img src="Messenger_creation_0E36DF8D-3A05-4540-BC6D-E0325E5B9153.jpeg" />
-    <img src="Messenger_creation_2DA7EBF7-3D85-4D84-861A-9FE6B8BD4AE0.jpeg" />
-    <img src="Messenger_creation_4B245010-1DFA-4234-8AE8-2807F9480E2B.jpeg" />
-    <img src="Messenger_creation_90120537-30C1-4E54-8288-F90C0E44CD17.jpeg" />
-    <img src="Messenger_creation_664DE66D-E925-4E97-970A-58EEB8D5C366.jpeg" />
-    <img src="b7d0ee8e0549c0a10725a361bd80222b.jpg" />
-  </div>
-</div>
-
+      <!-- 💖 HEART SLIDESHOW -->
+      <div class="heart">
+        <img id="heartImg" src="Messenger_creation_0E36DF8D-3A05-4540-BC6D-E0325E5B9153.jpeg" alt="Love photo">
+      </div>
 
       <footer>Made with ❤️ just for you</footer>
     </section>
@@ -78,7 +67,7 @@
     }
 
     function clean(s) {
-      return s.toLowerCase().replace(/\s+/g, '').replace(/[.,\-\/]/g, '');
+      return s.toLowerCase().replace(/\s+/g,'').replace(/[.,\-\/]/g,'');
     }
 
     function hasAll(str, parts) {
@@ -86,9 +75,9 @@
     }
 
     function checkAnswers() {
-      const raw1 = clean(document.getElementById('q1').value);
-      const raw2 = clean(document.getElementById('q2').value);
-      const raw3 = document.getElementById('q3').value.toLowerCase();
+      const raw1 = clean(q1.value);
+      const raw2 = clean(q2.value);
+      const raw3 = q3.value.toLowerCase();
 
       const ok1 =
         hasAll(raw1, ['10','26','2022']) ||
@@ -97,23 +86,39 @@
 
       const ok2 =
         hasAll(raw2, ['4','25']) ||
-        hasAll(raw2, ['04','25']) ||
         hasAll(raw2, ['apr','25']) ||
-        hasAll(raw2, ['april','25']) ||
-        hasAll(raw2, ['25','april']) ||
-        hasAll(raw2, ['25','apr']);
+        hasAll(raw2, ['april','25']);
 
-      const yesWords = ['yes','yess','yeah','yep','oo','oo nga','oo nga po','of course','sure'];
+      const yesWords = ['yes','yeah','yep','sure','of course','oo'];
       const ok3 = yesWords.some(w => raw3.includes(w));
 
       if (ok1 && ok2 && ok3) {
-        document.getElementById('quiz').classList.add('hidden');
-        document.getElementById('surprise').classList.remove('hidden');
+        quiz.classList.add('hidden');
+        surprise.classList.remove('hidden');
       } else {
-        document.getElementById('error').textContent =
-          'Almost there 😘 One of the answers is off. Try again!';
+        error.textContent = "Almost there 😘 Try again!";
       }
     }
+
+    // 💖 Slideshow logic
+    const photos = [
+      "Messenger_creation_0E36DF8D-3A05-4540-BC6D-E0325E5B9153.jpeg",
+      "Messenger_creation_2DA7EBF7-3D85-4D84-861A-9FE6B8BD4AE0.jpeg",
+      "Messenger_creation_4B245010-1DFA-4234-8AE8-2807F9480E2B.jpeg",
+      "Messenger_creation_90120537-30C1-4E54-8288-F90C0E44CD17.jpeg",
+      "b7d0ee8e0549c0a10725a361bd80222b.jpg"
+    ];
+
+    let i = 0;
+    setInterval(() => {
+      i = (i + 1) % photos.length;
+      const img = document.getElementById("heartImg");
+      img.classList.remove("fade");
+      void img.offsetWidth;
+      img.src = photos[i];
+      img.classList.add("fade");
+    }, 3000);
   </script>
 </body>
 </html>
+
