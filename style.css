@@ -59,10 +59,10 @@ button {
 
 /* 💖 BIG HEART */
 .heart {
-  width: 320px;
-  height: 300px;
+  width: 340px;
+  height: 320px;
   margin: 20px auto;
-  clip-path: path("M160 290 C-20 170 40 40 160 120 C280 40 340 170 160 290");
+  clip-path: path("M170 310 C-30 180 50 40 170 130 C290 40 370 180 170 310");
   overflow: hidden;
   animation: pulse 2.5s infinite ease-in-out;
   box-shadow: 0 10px 20px rgba(255,59,111,.4);
@@ -76,9 +76,7 @@ button {
   transition: opacity 1s ease;
 }
 
-.fade {
-  animation: fade 1s;
-}
+.fade { animation: fade 1s; }
 
 @keyframes fade {
   from { opacity: 0; }
@@ -88,4 +86,48 @@ button {
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
+}
+
+/* 🌷 TULIPS VIDEO */
+.tulips {
+  width: 320px;
+  max-width: 90%;
+  margin: 16px auto 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(255,59,111,.35);
+  animation: float 3s ease-in-out infinite;
+}
+
+.tulips video {
+  width: 100%;
+  display: block;
+}
+
+/* 💖 HEARTS + FLOWERS SHOWER */
+#shower {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.fall {
+  position: absolute;
+  top: -40px;
+  animation: fall linear forwards;
+  opacity: .9;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: .2;
+  }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
