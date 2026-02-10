@@ -56,14 +56,24 @@
         <img id="heartImg" src="Messenger_creation_0E36DF8D-3A05-4540-BC6D-E0325E5B9153.jpeg" alt="Love photo">
       </div>
 
+      <!-- 🌷 TULIPS VIDEO -->
+      <div class="tulips">
+        <video autoplay loop muted playsinline>
+          <source src="tulips.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- 💖 HEARTS + FLOWERS SHOWER -->
+      <div id="shower"></div>
+
       <footer>Made with ❤️ just for you</footer>
     </section>
   </div>
 
   <script>
     function startQuiz() {
-      document.getElementById('intro').classList.add('hidden');
-      document.getElementById('quiz').classList.remove('hidden');
+      intro.classList.add('hidden');
+      quiz.classList.remove('hidden');
     }
 
     function clean(s) {
@@ -95,6 +105,7 @@
       if (ok1 && ok2 && ok3) {
         quiz.classList.add('hidden');
         surprise.classList.remove('hidden');
+        startShower(); // 💖 start hearts & flowers
       } else {
         error.textContent = "Almost there 😘 Try again!";
       }
@@ -119,7 +130,23 @@
       img.src = photos[i];
       img.classList.add("fade");
     }, 3000);
+
+    // 💖 Hearts + Flowers shower
+    function startShower() {
+      const shower = document.getElementById("shower");
+      const emojis = ["💖","🌸","🌷","💗","💐","❤️"];
+
+      setInterval(() => {
+        const span = document.createElement("span");
+        span.className = "fall";
+        span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        span.style.left = Math.random() * 100 + "vw";
+        span.style.animationDuration = 3 + Math.random() * 3 + "s";
+        span.style.fontSize = 16 + Math.random() * 24 + "px";
+        shower.appendChild(span);
+        setTimeout(() => span.remove(), 6000);
+      }, 200);
+    }
   </script>
 </body>
 </html>
-
