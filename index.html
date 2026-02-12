@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For Lab 💖</title>
+  <title>This For You Mylabs 💖</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div class="card">
     <section id="intro">
-      <h1>Hey Lab 💘</h1>
+      <h1>Hi Baby 💘</h1>
       <p id="dateLockText">Before you see your surprise, answer these 3 little questions 😘</p>
       <button onclick="startQuiz()">Start</button>
     </section>
@@ -20,17 +20,17 @@
 
       <div class="q">
         <label><strong>1) When is our anniversary?</strong></label>
-        <input id="q1" placeholder="Oct. 26 2022 / 10-26-2022 / etc." />
+        <input id="q1" placeholder="Hmmm awon nato bih." />
       </div>
 
       <div class="q">
         <label><strong>2) When is my birthday?</strong></label>
-        <input id="q2" placeholder="April 25 / 4/25 / etc." />
+        <input id="q2" placeholder="month ug date lamg." />
       </div>
 
       <div class="q">
         <label><strong>3) Will you be my Valentine? 😳</strong></label>
-        <input id="q3" placeholder="Type YES 😉" />
+        <input id="q3" placeholder="What will it be man hmm.." />
       </div>
 
       <button onclick="checkAnswers()">Unlock Surprise 💝</button>
@@ -85,7 +85,7 @@
     function startQuiz() {
       if (!canUnlockTodayInCanada()) {
         document.getElementById("dateLockText").textContent =
-          "This surprise unlocks on Feb 14 (Canada time) 💘 Please come back then 😘";
+          "This surprise unlocks on Feb 14 (unlock ni sa time diha) 💘 Please come back then 😘";
         return;
       }
       intro.classList.add('hidden');
