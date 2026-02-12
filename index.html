@@ -11,7 +11,7 @@
   <div class="card">
     <section id="intro">
       <h1>Hey Lab 💘</h1>
-      <p>Before you see your surprise, answer these 3 little questions 😘</p>
+      <p id="dateLockText">Before you see your surprise, answer these 3 little questions 😘</p>
       <button onclick="startQuiz()">Start</button>
     </section>
 
@@ -51,9 +51,12 @@
         <p>— <strong>Aaron</strong></p>
       </div>
 
-      <!-- 💖 HEART SLIDESHOW -->
-      <div class="heart">
-        <img id="heartImg" src="Messenger_creation_0E36DF8D-3A05-4540-BC6D-E0325E5B9153.jpeg" alt="Love photo">
+      <!-- 💖 HEART SLIDESHOW + SPARKLES -->
+      <div class="heart-wrap">
+        <div class="sparkles"></div>
+        <div class="heart">
+          <img id="heartImg" src="Messenger_creation_0E36DF8D-3A05-4540-BC6D-E0325E5B9153.jpeg" alt="Love photo">
+        </div>
       </div>
 
       <!-- 🌷 TULIPS VIDEO -->
@@ -71,7 +74,20 @@
   </div>
 
   <script>
+    function canUnlockTodayInCanada() {
+      const now = new Date();
+      const canada = new Date(now.toLocaleString("en-US", { timeZone: "America/Toronto" }));
+      const month = canada.getMonth(); // 0 = Jan, 1 = Feb
+      const day = canada.getDate();
+      return month === 1 && day === 14; // Feb 14
+    }
+
     function startQuiz() {
+      if (!canUnlockTodayInCanada()) {
+        document.getElementById("dateLockText").textContent =
+          "This surprise unlocks on Feb 14 (Canada time) 💘 Please come back then 😘";
+        return;
+      }
       intro.classList.add('hidden');
       quiz.classList.remove('hidden');
     }
@@ -117,7 +133,6 @@
       "Messenger_creation_2DA7EBF7-3D85-4D84-861A-9FE6B8BD4AE0.jpeg",
       "Messenger_creation_4B245010-1DFA-4234-8AE8-2807F9480E2B.jpeg",
       "Messenger_creation_90120537-30C1-4E54-8288-F90C0E44CD17.jpeg",
-      "Messenger_creation_664DE66D-E925-4E97-970A-58EEB8D5C366.jpeg",
       "b7d0ee8e0549c0a10725a361bd80222b.jpg"
     ];
 
